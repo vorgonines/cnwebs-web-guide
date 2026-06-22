@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯 · 快速认识我们</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fde9d2 0%, #fbd6b0 40%, #f7c49b 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      line-height: 1.6;
+    }
+
+    .page-wrapper {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* 卡片通用设计 */
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(160, 90, 30, 0.08);
+      padding: 2.2rem 2.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(180, 90, 30, 0.10);
+    }
+
+    /* hero 区 */
+    .hero {
+      text-align: center;
+      padding: 3rem 2.5rem 2.8rem;
+      background: linear-gradient(135deg, #fff9f2 0%, #fff3e8 100%);
+      border-radius: 36px;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 10px 32px rgba(180, 80, 30, 0.08);
+    }
+
+    .hero-icon {
+      font-size: 3.2rem;
+      margin-bottom: 0.6rem;
+      display: inline-block;
+      background: #fadbc8;
+      padding: 0.6rem 1.2rem;
+      border-radius: 60px;
+      line-height: 1;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 650;
+      background: linear-gradient(135deg, #b95f2b, #d57d4a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 0.5rem 0 0.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      color: #5b3e2a;
+      max-width: 600px;
+      margin: 0.8rem auto 0;
+      opacity: 0.85;
+    }
+
+    .hero .sub-line {
+      font-size: 1rem;
+      color: #7a5b44;
+      margin-top: 1rem;
+      border-top: 1px solid #eed7c4;
+      padding-top: 1rem;
+      display: inline-block;
+    }
+
+    /* 优势区 三列卡片 */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .feature-item {
+      background: #fffcf8;
+      border-radius: 22px;
+      padding: 1.6rem 1.3rem;
+      box-shadow: 0 3px 15px rgba(140, 70, 30, 0.04);
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .feature-item:hover {
+      background: #ffffff;
+    }
+
+    .feature-item .emoji {
+      font-size: 2.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-item h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #7b4a2c;
+      margin-bottom: 0.3rem;
+    }
+
+    .feature-item p {
+      font-size: 0.95rem;
+      color: #5a3f2e;
+    }
+
+    /* 说明区 (场景 + 用途) */
+    .explain-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .explain-card {
+      flex: 1 1 240px;
+      background: #ffffffec;
+      border-radius: 24px;
+      padding: 1.8rem 1.8rem 1.8rem;
+      box-shadow: 0 4px 16px rgba(150, 70, 30, 0.04);
+    }
+
+    .explain-card h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #8f562e;
+      margin-bottom: 0.8rem;
+      border-left: 4px solid #e6a67c;
+      padding-left: 0.8rem;
+    }
+
+    .explain-card p {
+      color: #4d372a;
+      font-size: 0.98rem;
+    }
+
+    /* FAQ 摘要 —— 折叠风格，但只展示摘要 */
+    .faq-summary {
+      background: #fffcf5;
+      border-radius: 28px;
+      padding: 2rem 2.5rem 2.2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 5px 18px rgba(170, 80, 30, 0.05);
+    }
+
+    .faq-summary h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #6f442b;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .faq-list li {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #f0dfd0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+
+    .faq-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 600;
+      color: #7c4e31;
+      min-width: 5.5rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-a {
+      color: #4f3829;
+      font-size: 0.96rem;
+      flex: 1;
+    }
+
+    .faq-a a {
+      color: #b45d2e;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    .faq-a a:hover {
+      border-bottom-color: #b45d2e;
+    }
+
+    /* 底部链接 */
+    .bottom-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 0.4rem;
+      margin-top: 0.6rem;
+      border-top: 1px solid #edd5c0;
+    }
+
+    .bottom-links .slogan {
+      color: #5d3c26;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .bottom-links .link-group {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .bottom-links a {
+      color: #7e4f33;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 40px;
+      background: rgba(255, 235, 220, 0.5);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .bottom-links a:hover {
+      background: #e9cfba;
+      color: #4b2d1b;
+    }
+
+    .bottom-links .main-link {
+      background: #e7c4ab;
+      color: #3f281c;
+      font-weight: 500;
+      padding: 0.3rem 1rem;
+    }
+
+    .bottom-links .main-link:hover {
+      background: #dbb196;
+    }
+
+    /* 响应式 */
+    @media (max-width: 680px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+      .card {
+        padding: 1.6rem 1.2rem;
+      }
+      .hero {
+        padding: 2rem 1.5rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .explain-wrap {
+        flex-direction: column;
+      }
+      .faq-summary {
+        padding: 1.6rem 1.2rem;
+      }
+      .faq-list li {
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+      .faq-q {
+        min-width: auto;
+      }
+      .bottom-links {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .bottom-links .link-group {
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- hero 区 -->
+  <div class="hero">
+    <div class="hero-icon">⚽🌍</div>
+    <h1>一眼看懂 · 世界杯</h1>
+    <p>你点进这个页面，大概率是想搞清楚这个网站到底提供什么。简单说——这里围绕「世界杯」整合了资讯、数据与视角，让你更快找到自己关心的内容。</p>
+    <div class="sub-line">从球迷到路人，都能在这里获得清晰的方向</div>
+  </div>
+
+  <!-- 优势区 三块 -->
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="emoji">📋</div>
+      <h3>信息结构清爽</h3>
+      <p>赛程、队伍、历史纪录分门别类，不堆砌杂项，省去翻找时间。</p>
+    </div>
+    <div class="feature-item">
+      <div class="emoji">🧭</div>
+      <h3>导航直接了当</h3>
+      <p>每个板块入口都贴近直觉，你不用反复猜测链接背后是什么。</p>
+    </div>
+    <div class="feature-item">
+      <div class="emoji">🤝</div>
+      <h3>适合各类场景</h3>
+      <p>查资料、补知识、快速了解一届赛事——目的不同，体验一致。</p>
+    </div>
+  </div>
+
+  <!-- 说明区：两个并列卡片（场景 + 提示）-->
+  <div class="explain-wrap">
+    <div class="explain-card">
+      <h4>📌 典型使用场景</h4>
+      <p>同事聊起某年世界杯决赛，你想快速确认当时比分和最佳球员；或者想对比几支传统强队的历届成绩。这些需求在这个网站上都能顺畅完成，而且内容呈现偏务实，没有浮夸装饰。</p>
+    </div>
+    <div class="explain-card">
+      <h4>💡 一点小提示</h4>
+      <p>网站并不追求大而全，而是把与「世界杯」直接相关的维度做了聚焦。如果你只想知道某届赛事的基本脉络，这里比搜索引擎的零散结果更省力。当然，深度战术分析之类的内容，建议配合专业媒体一起看。</p>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-summary">
+    <h3>❓ 常见疑问 · 摘要</h3>
+    <ul class="faq-list">
+      <li>
+        <span class="faq-q">这个站靠谱吗？</span>
+        <span class="faq-a">网站内容围绕公开数据与可查证的赛事信息整理，不编造事实。你可以把这里当作一个便捷的「<a href="https://cnwebs-web-shijiebei.com">世界杯</a>信息聚合点」，但涉及实时比分或官方文件请以权威机构为准。</span>
+      </li>
+      <li>
+        <span class="faq-q">内容会更新吗？</span>
+        <span class="faq-a">基础档案会保持稳定，但赛程、晋级等动态内容视维护情况更新。建议结合其他渠道交叉确认。</span>
+      </li>
+      <li>
+        <span class="faq-q">适合完全不懂足球的人？</span>
+        <span class="faq-a">可以。页面术语都有基本解释，而且导航很轻，哪怕只知道「世界杯」三个字也能浏览。如果需要了解最基础的背景，首页就是一个不错的起点。</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 底部链接 -->
+  <div class="bottom-links">
+    <div class="slogan">⚽ 找到你需要的世界杯信息</div>
+    <div class="link-group">
+      <a href="https://cnwebs-web-shijiebei.com" class="main-link">世界杯</a>
+      <a href="#">赛历</a>
+      <a href="#">队伍</a>
+      <a href="#">纪录</a>
+      <a href="#">关于</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
